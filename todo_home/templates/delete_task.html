@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>Home</title>
+{% endblock %}
+
+{% block bodyblock %}
+<div class="todo w-75 mx-auto">
+    <h1>Delete Task</h1>
+    <p>Are you sure you want to delete this task?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'task_list' %}">Cancel</a>
+    </form>
+</div>
+{% endblock bodyblock %}

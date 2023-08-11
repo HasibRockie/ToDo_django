@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}<title> Task Lists </title>{% endblock %}
+
+
+{% block bodyblock %}
+    <h1>Completed Task list: </h1>
+
+    <table class="table table-hover w-75 mx-auto">
+        <thead>
+          <tr>
+            <th scope="col">#ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+        {% if task.is_completed %}
+        
+        
+            <tr>
+                <td>{{ task.taskId }}</td>
+                <td>{{ task.taskTitle }}</td>
+                <td>{{ task.taskDescription }}</td>
+                <td>{{ task.is_completed }}</td>
+                <td>
+                    <a class="btn btn-success" href="{% url 'edit_task' pk=task.taskId %}">Edit</a> 
+                    <a class="btn btn-danger" href="{% url 'delete_task' pk=task.taskId %}">Delete</a>
+                </td>
+            </tr>
+        {% else %}
+        {% endif %}
+        {% endfor %}
+        </tbody>
+      </table>
+
+
+
+{% endblock %}
